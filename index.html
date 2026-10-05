@@ -8,7 +8,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="auth-brand">n</div>
+      <h1>nexite</h1>
+      <p id="authSubtitle">welcome back.</p>
+
+      <div class="auth-tabs">
+        <button id="loginTab" class="active" type="button">log in</button>
+        <button id="registerTab" type="button">register</button>
+      </div>
+
+      <form id="authForm">
+        <label>
+          username
+          <input id="usernameInput" autocomplete="username" maxlength="20" placeholder="username" required>
+        </label>
+        <label>
+          password
+          <input id="passwordInput" type="password" autocomplete="current-password" minlength="6" placeholder="password" required>
+        </label>
+        <div id="authError" class="auth-error" role="alert"></div>
+        <button id="authSubmit" class="auth-submit" type="submit">log in</button>
+      </form>
+
+      <p class="auth-note">username + password. that's it.</p>
+    </div>
+  </section>
+
+  <div id="app" class="hidden">
     <aside class="server-rail" aria-label="servers">
       <button class="server home active" title="home">n</button>
       <div class="rail-line"></div>
@@ -39,13 +67,13 @@
       </div>
 
       <div class="user-panel">
-        <div class="avatar me">Z</div>
+        <div id="myAvatar" class="avatar me">?</div>
         <div class="user-copy">
-          <strong>you</strong>
+          <strong id="myUsername">...</strong>
           <span>online</span>
         </div>
         <button class="icon-button" title="mute">🎙</button>
-        <button class="icon-button" title="settings">⚙</button>
+        <button id="logoutBtn" class="icon-button" title="log out">↪</button>
       </div>
     </aside>
 
@@ -70,15 +98,11 @@
     </main>
 
     <aside class="members">
-      <h3>ONLINE — 3</h3>
-      <div class="member"><div class="avatar bot">N</div><div><strong>nexbot</strong><span>keeping the lights on</span></div></div>
-      <div class="member"><div class="avatar me">Z</div><div><strong>you</strong><span>online</span></div></div>
-      <div class="member"><div class="avatar cube">🧊</div><div><strong>cubey</strong><span>being a cube</span></div></div>
-      <h3>OFFLINE — 1</h3>
-      <div class="member offline"><div class="avatar">?</div><div><strong>somebody</strong><span>offline</span></div></div>
+      <h3 id="onlineCount">ONLINE — 0</h3>
+      <div id="memberList"></div>
     </aside>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
