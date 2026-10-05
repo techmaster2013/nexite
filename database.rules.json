@@ -1,0 +1,29 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['username', 'createdAt']) && newData.child('username').isString() && newData.child('username').val().matches(/^[a-z0-9_]{3,20}$/)"
+      }
+    },
+    "presence": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['username', 'state', 'lastChanged']) && newData.child('username').isString() && (newData.child('state').val() === 'online' || newData.child('state').val() === 'offline')"
+      }
+    },
+    "messages": {
+      "$channel": {
+        ".read": "auth != null && ($channel === 'general' || $channel === 'random' || $channel === 'memes')",
+        "$messageId": {
+          ".write": "auth != null && !data.exists() && newData.child('uid').val() === auth.uid && root.child('users').child(auth.uid).child('username').val() === newData.child('username').val() && ($channel === 'general' || $channel === 'random' || $channel === 'memes')",
+          ".validate": "newData.hasChildren(['uid', 'username', 'text', 'createdAt']) && newData.child('uid').isString() && newData.child('username').isString() && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 2000"
+        }
+      }
+    }
+  }
+}
