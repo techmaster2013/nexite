@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17181c">
+  <meta name="theme-color" content="#12091f">
   <title>nexite</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="auth.css">
@@ -14,95 +14,103 @@
       <div class="auth-brand">n</div>
       <h1>nexite</h1>
       <p id="authSubtitle">welcome back.</p>
-
       <div class="auth-tabs">
         <button id="loginTab" class="active" type="button">log in</button>
         <button id="registerTab" type="button">register</button>
       </div>
-
       <form id="authForm">
-        <label>
-          username
+        <label>username
           <input id="usernameInput" autocomplete="username" maxlength="20" placeholder="username" required>
         </label>
-        <label>
-          password
+        <label>password
           <input id="passwordInput" type="password" autocomplete="current-password" minlength="6" placeholder="password" required>
         </label>
         <div id="authError" class="auth-error" role="alert"></div>
         <button id="authSubmit" class="auth-submit" type="submit">log in</button>
       </form>
-
-      <p class="auth-note">username + password. that's it.</p>
+      <p class="auth-note">username + password. nothing else.</p>
     </div>
   </section>
 
   <div id="app" class="hidden">
-    <aside class="server-rail" aria-label="servers">
-      <button class="server home active" title="home">n</button>
-      <div class="rail-line"></div>
-      <button class="server" data-server="nexite" title="nexite">NX</button>
-      <button class="server" data-server="cubey" title="cubey cult">🧊</button>
-      <button class="server add" title="add a server">+</button>
+    <aside class="orbit">
+      <button id="homeBtn" class="orbit-btn brand active" title="home">n</button>
+      <button id="friendsBtn" class="orbit-btn" title="friends">♡</button>
+      <div class="orbit-rule"></div>
+      <div id="serverRail" class="server-rail"></div>
+      <button id="createServerBtn" class="orbit-btn add" title="create space">+</button>
+      <div class="orbit-spacer"></div>
+      <button id="settingsBtn" class="orbit-btn" title="settings">⚙</button>
     </aside>
 
     <aside class="sidebar">
-      <header class="server-header">
-        <strong id="serverName">nexite</strong>
-        <button class="icon-button" title="server menu">⌄</button>
+      <header class="side-head">
+        <div>
+          <strong id="sideTitle">home</strong>
+          <small id="sideSubtitle">your nexite</small>
+        </div>
+        <button id="sideAction" class="soft-btn" title="add">+</button>
       </header>
-
-      <div class="channel-list">
-        <div class="channel-group">
-          <div class="group-title"><span>⌄ TEXT CHANNELS</span><button>+</button></div>
-          <button class="channel active" data-channel="general"><span>#</span> general</button>
-          <button class="channel" data-channel="random"><span>#</span> random</button>
-          <button class="channel" data-channel="memes"><span>#</span> memes</button>
+      <div id="sidebarContent" class="side-content"></div>
+      <div class="me-card">
+        <button id="myAvatar" class="avatar avatar-btn">?</button>
+        <div class="me-copy">
+          <strong id="myDisplay">...</strong>
+          <span id="myUsername">@...</span>
         </div>
-
-        <div class="channel-group">
-          <div class="group-title"><span>⌄ VOICE CHANNELS</span><button>+</button></div>
-          <button class="channel"><span>🔊</span> lounge</button>
-          <button class="channel"><span>🔊</span> gaming</button>
-        </div>
-      </div>
-
-      <div class="user-panel">
-        <div id="myAvatar" class="avatar me">?</div>
-        <div class="user-copy">
-          <strong id="myUsername">...</strong>
-          <span>online</span>
-        </div>
-        <button class="icon-button" title="mute">🎙</button>
-        <button id="logoutBtn" class="icon-button" title="log out">↪</button>
+        <button id="logoutBtn" class="ghost-btn" title="log out">↪</button>
       </div>
     </aside>
 
     <main class="chat">
-      <header class="chat-header">
-        <div class="channel-title"><span>#</span><strong id="channelTitle">general</strong></div>
-        <div class="header-actions">
-          <button class="icon-button" title="notifications">🔔</button>
-          <button class="icon-button" title="members">👥</button>
-          <label class="search"><input id="search" placeholder="Search"><span>⌕</span></label>
+      <header class="chat-head">
+        <div class="chat-identity">
+          <span id="chatGlyph" class="chat-glyph">✦</span>
+          <div>
+            <strong id="chatTitle">nexite</strong>
+            <small id="chatSubtitle">pick a conversation</small>
+          </div>
+        </div>
+        <div class="chat-actions">
+          <button id="chatInfoBtn" class="ghost-btn" title="details">ⓘ</button>
+          <label class="search"><span>⌕</span><input id="search" placeholder="search messages"></label>
         </div>
       </header>
 
-      <section id="messages" class="messages" aria-live="polite"></section>
+      <section id="emptyState" class="empty-state">
+        <div class="empty-orb">n</div>
+        <h1>your people, your spaces.</h1>
+        <p>add a friend, start a dm, or make a space.</p>
+        <div>
+          <button id="emptyFriendBtn" class="primary-btn">add friend</button>
+          <button id="emptyServerBtn" class="soft-btn">create space</button>
+        </div>
+      </section>
 
-      <form id="messageForm" class="composer">
-        <button type="button" class="attach" title="add attachment">+</button>
-        <input id="messageInput" autocomplete="off" maxlength="2000" placeholder="Message #general">
-        <button type="button" class="composer-action" title="emoji">☺</button>
-        <button class="send" type="submit">Send</button>
+      <section id="messages" class="messages hidden" aria-live="polite"></section>
+      <div id="typingBar" class="typing-bar"></div>
+
+      <div id="attachmentPreview" class="attachment-preview hidden"></div>
+      <form id="messageForm" class="composer hidden">
+        <button id="attachBtn" type="button" class="composer-btn" title="image">＋</button>
+        <input id="imageInput" type="file" accept="image/*" hidden>
+        <textarea id="messageInput" rows="1" maxlength="4000" placeholder="message"></textarea>
+        <button id="emojiBtn" type="button" class="composer-btn" title="emoji">☺</button>
+        <button class="send" type="submit">➜</button>
       </form>
     </main>
 
-    <aside class="members">
-      <h3 id="onlineCount">ONLINE — 0</h3>
-      <div id="memberList"></div>
+    <aside id="details" class="details">
+      <div id="detailsContent"></div>
     </aside>
   </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <section id="modal" class="modal" role="dialog" aria-modal="true"></section>
+  </div>
+  <div id="emojiPicker" class="emoji-picker hidden"></div>
+  <div id="reactionPicker" class="emoji-picker reaction-picker hidden"></div>
+  <div id="toast" class="toast hidden"></div>
 
   <script type="module" src="app.js"></script>
 </body>
