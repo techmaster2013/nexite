@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17181c">
+  <title>nexite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <aside class="server-rail" aria-label="servers">
+      <button class="server home active" title="home">n</button>
+      <div class="rail-line"></div>
+      <button class="server" data-server="nexite" title="nexite">NX</button>
+      <button class="server" data-server="cubey" title="cubey cult">🧊</button>
+      <button class="server add" title="add a server">+</button>
+    </aside>
+
+    <aside class="sidebar">
+      <header class="server-header">
+        <strong id="serverName">nexite</strong>
+        <button class="icon-button" title="server menu">⌄</button>
+      </header>
+
+      <div class="channel-list">
+        <div class="channel-group">
+          <div class="group-title"><span>⌄ TEXT CHANNELS</span><button>+</button></div>
+          <button class="channel active" data-channel="general"><span>#</span> general</button>
+          <button class="channel" data-channel="random"><span>#</span> random</button>
+          <button class="channel" data-channel="memes"><span>#</span> memes</button>
+        </div>
+
+        <div class="channel-group">
+          <div class="group-title"><span>⌄ VOICE CHANNELS</span><button>+</button></div>
+          <button class="channel"><span>🔊</span> lounge</button>
+          <button class="channel"><span>🔊</span> gaming</button>
+        </div>
+      </div>
+
+      <div class="user-panel">
+        <div class="avatar me">Z</div>
+        <div class="user-copy">
+          <strong>you</strong>
+          <span>online</span>
+        </div>
+        <button class="icon-button" title="mute">🎙</button>
+        <button class="icon-button" title="settings">⚙</button>
+      </div>
+    </aside>
+
+    <main class="chat">
+      <header class="chat-header">
+        <div class="channel-title"><span>#</span><strong id="channelTitle">general</strong></div>
+        <div class="header-actions">
+          <button class="icon-button" title="notifications">🔔</button>
+          <button class="icon-button" title="members">👥</button>
+          <label class="search"><input id="search" placeholder="Search"><span>⌕</span></label>
+        </div>
+      </header>
+
+      <section id="messages" class="messages" aria-live="polite"></section>
+
+      <form id="messageForm" class="composer">
+        <button type="button" class="attach" title="add attachment">+</button>
+        <input id="messageInput" autocomplete="off" maxlength="2000" placeholder="Message #general">
+        <button type="button" class="composer-action" title="emoji">☺</button>
+        <button class="send" type="submit">Send</button>
+      </form>
+    </main>
+
+    <aside class="members">
+      <h3>ONLINE — 3</h3>
+      <div class="member"><div class="avatar bot">N</div><div><strong>nexbot</strong><span>keeping the lights on</span></div></div>
+      <div class="member"><div class="avatar me">Z</div><div><strong>you</strong><span>online</span></div></div>
+      <div class="member"><div class="avatar cube">🧊</div><div><strong>cubey</strong><span>being a cube</span></div></div>
+      <h3>OFFLINE — 1</h3>
+      <div class="member offline"><div class="avatar">?</div><div><strong>somebody</strong><span>offline</span></div></div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
