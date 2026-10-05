@@ -108,7 +108,7 @@
     "dms": {
       "$dmId": {
         ".read": "auth != null && data.child('members').child(auth.uid).val() === true",
-        ".write": "auth != null && !data.exists() && newData.child('members').child(auth.uid).val() === true && newData.child('members').numChildren() === 2",
+        ".write": "auth != null && !data.exists() && newData.child('members').child(auth.uid).val() === true",
         "members": {
           "$uid": { ".validate": "newData.val() === true" }
         }
